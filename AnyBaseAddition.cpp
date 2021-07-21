@@ -1,19 +1,6 @@
 #include <iostream>
 using namespace std;
 
-int convert(int num, int base)
-{
-    int ans = 0, p = 1;
-    while (num > 0)
-    {
-        int temp = num % base;
-        ans = ans + temp * p;
-        p=p*10;
-        num = num / base;
-    }
-    return ans;
-}
-
 int add(int n, int m, int base)
 {
     int carry = 0;
@@ -26,7 +13,7 @@ int add(int n, int m, int base)
         carry = sum / base;
         sum = sum % base;
         ans = ans + sum * y;
-        y = y * base;
+        y = y * 10;
         n = n / 10;
         m = m / 10;
     }
@@ -37,7 +24,7 @@ int add(int n, int m, int base)
         carry = sum / base;
         sum = sum % base;
         ans = ans + sum * y;
-        y = y * base;
+        y = y * 10;
         n = n / 10;
     }while (m > 0)
     {
@@ -46,7 +33,7 @@ int add(int n, int m, int base)
         carry = sum / base;
         sum = sum % base;
         ans = ans + sum * y;
-        y = y * base;
+        y = y * 10;
         m = m / 10;
     }
     if (carry != 0)
@@ -60,5 +47,5 @@ int main()
 {
     int n, m, base;
     cin >> n >> m >> base;
-    cout <<convert(add(n, m, base),base);
+    cout <<add(n, m, base);
 }
