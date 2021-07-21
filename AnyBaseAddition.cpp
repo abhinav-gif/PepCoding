@@ -17,11 +17,6 @@ int add(int n, int m, int base)
         n = n / 10;
         m = m / 10;
     }
-    
-    // if (carry != 0)
-    // {
-    //     ans = ans + carry * y;
-    // }
     return ans;
 }
 
