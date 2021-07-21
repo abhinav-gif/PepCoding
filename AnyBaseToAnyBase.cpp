@@ -2,17 +2,36 @@
 #include <cmath>
 using namespace std;
 
-int convert(int n, int b1, int b2)
+int getValueInDecimal(int num, int base)
 {
-    int ans = 0, y = 0;
-    while (n > 0)
+    int ans = 0, p = 1;
+    while (num > 0)
     {
-        int temp = n % b2;
-        ans = ans + temp * pow(b1, y);
-        y++;
-        n = n / b2;
+        int temp = num % 10;
+        ans = ans + temp * p;
+        p = p * base;
+        num = num / 10;
     }
     return ans;
+}
+
+int decimalToAny(int num, int base)
+{
+    int ans = 0, p = 1;
+    while (num > 0)
+    {
+        int temp = num % base;
+        ans = ans + temp * p;
+        p = p * 10;
+        num = num / base;
+    }
+    return ans;
+}
+
+int convert(int n, int b1, int b2)
+{
+    int decimal = getValueInDecimal(n, b1);
+    return decimalToAny(decimal, b2);
 }
 
 int main()
