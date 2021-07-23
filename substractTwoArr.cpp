@@ -13,13 +13,17 @@ int *substract(int *arr1, int n, int *arr2, int m)
     }
     int i = n - 1, j = m - 1, carry = 0, k = tSize - 1;
     while (i >= 0 && j >= 0)
-    {int sum=0;
-         arr1[i] = carry + arr1[i];
-        if(arr2[j]>arr1[i]){
-            carry=-1;
-            sum=arr1[i]+10-arr2[j];
-        }else{
-            sum=arr1[i]-arr2[j];
+    {
+        int sum = 0;
+        arr1[i] = carry + arr1[i];
+        if (arr2[j] > arr1[i])
+        {
+            carry = -1;
+            sum = arr1[i] + 10 - arr2[j];
+        }
+        else
+        {
+            sum = arr1[i] - arr2[j];
         }
         ans[k] = sum;
         k--;
@@ -29,8 +33,17 @@ int *substract(int *arr1, int n, int *arr2, int m)
     while (i >= 0)
     {
         int sum = carry + arr1[i];
-        carry=0;
-        ans[k] = sum;
+        if (sum < 0)
+        {
+            carry = -1;
+            sum = sum + 10;
+            ans[k] = sum;
+        }
+        else
+        {
+            carry = 0;
+            ans[k] = sum;
+        }
         k--;
         i--;
     }
