@@ -79,6 +79,10 @@ int main()
             cout << ans[i] << " ";
         }
     }
+    if (count == 0)
+    {
+        cout << "0";
+    }
     cout << endl;
     delete[] arr1;
     delete[] arr2;
