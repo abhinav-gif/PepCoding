@@ -32,7 +32,7 @@ void flind(int *arr, int n, int x)
             low = mid + 1;
         }
     }
-    cout << "-1" << endl;
+    cout << "-1 -1" << endl;
 }
 
 int main()
