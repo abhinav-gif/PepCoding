@@ -13,12 +13,12 @@ void cf(int *arr, int n, int x)
             cout << arr[mid] << " " << arr[mid] << endl;
             return;
         }
-        else if (mid + 1 < n && arr[mid] < x && arr[mid + 1] > x)
-        {
-            f = arr[mid], c = arr[mid + 1];
-            cout << arr[mid] << " " << arr[mid + 1] << endl;
-            return;
-        }
+        // else if (mid + 1 < n && arr[mid] < x && arr[mid + 1] > x)
+        // {
+        //     f = arr[mid], c = arr[mid + 1];
+        //     cout << arr[mid] << " " << arr[mid + 1] << endl;
+        //     return;
+        // }
         else if (arr[mid] > x)
         {
             c = arr[mid];
