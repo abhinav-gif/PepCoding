@@ -119,12 +119,39 @@ public:
             n->next = head;
             head = n;
         }
+        size++;
+    }
+
+    void addAti(int data, int j)
+    {
+        Node *n = new Node(data);
+        if (j < 0 || j > size)
+        {
+            cout << "Invalid Argument" << endl;
+            return;
+        }
+        if (j == 0)
+        {
+            n->next = head;
+            head = n;
+        }
+        else
+        {
+            Node *temp = head;
+            for (int i = 1; i < j; i++)
+            {
+                temp = temp->next;
+            }
+            n->next = temp->next;
+            temp->next = n;
+        }
+        size++;
     }
 };
 
 int main()
 {
     LinkedList l;
-    l.addfirst(0);
+    l.addAti(100, 0);
     l.print();
 }
