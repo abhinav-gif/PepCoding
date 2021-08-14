@@ -152,15 +152,41 @@ public:
         }
         size++;
     }
+    void removeLast()
+    {
+        if (size == 0)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
+        if (size == 1)
+        {
+            delete head;
+            head = NULL;
+            tail = NULL;
+        }
+        else
+        {
+            Node *temp = head;
+            while (temp->next != tail)
+            {
+                temp = temp->next;
+            }
+            delete tail;
+            temp->next = NULL;
+            tail = temp;
+        }
+        size--;
+    }
 };
 
 int main()
 {
     LinkedList l;
-    l.addfirst(10);
+    l.addLast(10);
     l.addLast(20);
-    l.addAti(1, 0);
-    l.addAti(2, 2);
-    l.addAti(3, 4);
+    l.addLast(30);
+    l.removeLast();
+    l.addLast(20);
     l.print();
 }
