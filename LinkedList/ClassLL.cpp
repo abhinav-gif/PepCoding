@@ -135,6 +135,11 @@ public:
             n->next = head;
             head = n;
         }
+        else if (j == size)
+        {
+            tail->next = n;
+            tail = n;
+        }
         else
         {
             Node *temp = head;
@@ -152,6 +157,10 @@ public:
 int main()
 {
     LinkedList l;
-    l.addAti(100, 0);
+    l.addfirst(10);
+    l.addLast(20);
+    l.addAti(1, 0);
+    l.addAti(2, 2);
+    l.addAti(3, 4);
     l.print();
 }
