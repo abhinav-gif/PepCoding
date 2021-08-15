@@ -178,6 +178,57 @@ public:
         }
         size--;
     }
+    void reverse()
+    {
+        Node *curr = head;
+        Node *prev = NULL;
+        Node *Next = head->next;
+        tail = head;
+        while (curr != NULL)
+        {
+            curr->next = prev;
+            prev = curr;
+            curr = Next;
+            if (Next != NULL)
+            {
+                Next = Next->next;
+            }
+        }
+        head = prev;
+    }
+    void removeAt(int j)
+    {
+        if (size == 0)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
+        if (j < 0 || j >= size)
+        {
+            cout << "Invalid Argument" << endl;
+            return;
+        }
+        if (j == 0)
+        {
+            removeFirst();
+        }
+        else if (j == size - 1)
+        {
+            removeLast();
+        }
+        else
+        {
+            Node *temp = head;
+            for (int i = 0; i < j - 1; i++)
+            {
+                temp = temp->next;
+            }
+            Node *temp2 = temp->next;
+            temp->next = temp2->next;
+            delete temp2;
+        }
+        size--;
+    }
 };
 
 int main()
@@ -186,7 +237,7 @@ int main()
     l.addLast(10);
     l.addLast(20);
     l.addLast(30);
-    l.removeLast();
-    l.addLast(20);
+    l.addLast(40);
+    l.removeAt(2);
     l.print();
 }
