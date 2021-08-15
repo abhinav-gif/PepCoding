@@ -60,14 +60,22 @@ public:
         }
         return slow->data;
     }
+    int mid()
+    {
+        Node *slow = head;
+        Node *fast = head;
+        while (fast->next != NULL && fast->next->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow->data;
+    }
 };
 
 int main()
 {
     LinkedList l;
     l.add(10);
-    l.add(20);
-    l.add(30);
-    l.add(40);
-    cout << l.getKlastNode(4) << endl;
+    cout << l.mid() << endl;
 }
