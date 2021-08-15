@@ -18,28 +18,88 @@ class LinkedList
 {
 public:
     Node *head;
-    Node *tail;
+    // Node *tail;
     int size;
     LinkedList()
     {
         size = 0;
         head = NULL;
-        tail = NULL;
+        // tail = NULL;
     }
+    // void push(int data)
+    // {
+    //     Node *n = new Node(data);
+    //     if (size == 0)
+    //     {
+    //         head = n;
+    //         tail = n;
+    //     }
+    //     else
+    //     {
+    //         tail->next = n;
+    //         tail = tail->next;
+    //     }
+    //     size++;
+    // }
+    // int top()
+    // {
+    //     if (size == 0)
+    //     {
+    //         cout << "Empty" << endl;
+    //         return -1;
+    //     }
+    //     else
+    //     {
+    //         return tail->data;
+    //     }
+    // }
+    // void pop()
+    // {
+    //     if (size == 0)
+    //     {
+    //         cout << "Empty" << endl;
+    //         return;
+    //     }
+    //     Node *temp = head;
+    //     while (temp->next != tail)
+    //     {
+    //         temp = temp->next;
+    //     }
+    //     delete tail;
+    //     temp->next = NULL;
+    //     tail = temp;
+    //     size--;
+    // }
+    // time complexity O(1)
+
     void push(int data)
     {
         Node *n = new Node(data);
         if (size == 0)
         {
             head = n;
-            tail = n;
         }
         else
         {
-            tail->next = n;
-            tail = tail->next;
+            n->next = head;
+            head = n;
         }
         size++;
+    }
+    void pop()
+    {
+        if (size == 0)
+        {
+            cout << "Empty" << endl;
+            return;
+        }
+        else
+        {
+            Node *temp = head;
+            head = head->next;
+            delete temp;
+        }
+        size--;
     }
     int top()
     {
@@ -50,25 +110,8 @@ public:
         }
         else
         {
-            return tail->data;
+            return head->data;
         }
-    }
-    void pop()
-    {
-        if (size == 0)
-        {
-            cout << "Empty" << endl;
-            return;
-        }
-        Node *temp = head;
-        while (temp->next != tail)
-        {
-            temp = temp->next;
-        }
-        delete tail;
-        temp->next = NULL;
-        tail = temp;
-        size--;
     }
     int getSize()
     {
