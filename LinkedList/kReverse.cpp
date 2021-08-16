@@ -225,6 +225,12 @@ public:
         cout << endl;
     }
 
+    void reverse()
+    {
+        tail = head;
+        head = reverseHelper(head);
+    }
+
 private:
     void displayReverseHelper(Node *head)
     {
@@ -235,6 +241,17 @@ private:
         displayReverseHelper(head->next);
         cout << head->data << " ";
     }
+    Node *reverseHelper(Node *head)
+    {
+        if (head == NULL || head->next == NULL)
+        {
+            return head;
+        }
+        Node *sh = reverseHelper(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return sh;
+    }
 };
 
 int main()
@@ -243,13 +260,13 @@ int main()
     l.addLast(1);
     l.addLast(2);
     l.addLast(3);
-    l.addLast(4);
-    l.addLast(5);
-    l.addLast(6);
-    l.addLast(7);
-    l.addLast(8);
-    l.addLast(9);
-    l.addLast(10);
-    l.displayReverse();
+    // l.addLast(4);
+    // l.addLast(5);
+    // l.addLast(6);
+    // l.addLast(7);
+    // l.addLast(8);
+    // l.addLast(9);
+    // l.addLast(10);
+    l.reverse();
     l.print();
 }
