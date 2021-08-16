@@ -229,15 +229,73 @@ public:
         }
         size--;
     }
+
+    void removeDup()
+    {
+        if (head == NULL || head->next == NULL)
+        {
+            return;
+        }
+        Node *slow = head;
+        Node *fast = head->next;
+        while (fast != NULL)
+        {
+            if (slow->data == fast->data)
+            {
+                Node *temp = fast;
+                slow->next = fast->next;
+                fast = fast->next;
+                delete temp;
+            }
+            else
+            {
+                slow = fast;
+                fast = fast->next;
+            }
+        }
+    }
+    void evenOdd()
+    {
+        if (head == NULL || head->next == NULL)
+        {
+            return;
+        }
+        Node *temp = head;
+        LinkedList odd;
+        LinkedList even;
+        while (temp != NULL)
+        {
+            if (temp->data % 2 == 1)
+            {
+                odd.addLast(temp->data);
+            }
+            else
+            {
+                even.addLast(temp->data);
+            }
+            temp = temp->next;
+            this->removeFirst();
+        }
+        odd.tail->next = even.head;
+        this->head = odd.head;
+        this->tail = even.tail;
+        this->size = odd.size + even.size;
+    }
 };
 
 int main()
 {
     LinkedList l;
-    l.addLast(10);
-    l.addLast(20);
-    l.addLast(30);
-    l.addLast(40);
-    l.removeAt(2);
+    l.addLast(2);
+    l.addLast(2);
+    l.addLast(2);
+    l.addLast(3);
+    l.addLast(3);
+    l.addLast(4);
+    l.addLast(5);
+    l.addLast(5);
+    l.addLast(5);
+    l.addLast(5);
+    l.evenOdd();
     l.print();
 }
