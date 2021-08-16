@@ -73,9 +73,75 @@ public:
     }
 };
 
+Node *mergeSorted(Node *h1, Node *h2)
+{
+    Node *fh = NULL;
+    Node *tail = NULL;
+    while (h1 != NULL && h2 != NULL)
+    {
+        if (fh == NULL)
+        {
+            if (h1->data < h2->data)
+            {
+                fh = h1;
+                tail = h1;
+                h1 = h1->next;
+            }
+            else
+            {
+                fh = h2;
+                tail = h2;
+                h2 = h2->next;
+            }
+        }
+        else
+        {
+            if (h1->data < h2->data)
+            {
+                tail->next = h1;
+                tail = tail->next;
+                h1 = h1->next;
+            }
+            else
+            {
+                tail->next = h2;
+                tail = tail->next;
+                h2 = h2->next;
+            }
+        }
+    }
+    if (h1 != NULL)
+    {
+        tail->next = h1;
+    }
+    if (h2 != NULL)
+    {
+        tail->next = h2;
+    }
+    return fh;
+}
+
+void print(Node *head)
+{
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
 int main()
 {
     LinkedList l;
     l.add(10);
-    cout << l.mid() << endl;
+    l.add(20);
+    l.add(30);
+    LinkedList m;
+    m.add(1);
+    m.add(25);
+    m.add(36);
+    Node *head = mergeSorted(l.head, m.head);
+    print(head);
 }

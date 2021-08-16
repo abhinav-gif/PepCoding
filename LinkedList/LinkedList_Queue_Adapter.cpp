@@ -66,10 +66,4 @@ public:
 int main()
 {
     LinkedList l;
-    l.add(10);
-    l.add(20);
-    l.add(30);
-    cout << l.peek() << endl;
-    l.remove();
-    cout << l.peek() << endl;
 }
