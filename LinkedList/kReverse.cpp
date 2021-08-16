@@ -219,7 +219,24 @@ public:
         this->tail = final.tail;
         this->size = final.size;
     }
+    void displayReverse()
+    {
+        displayReverseHelper(head);
+        cout << endl;
+    }
+
+private:
+    void displayReverseHelper(Node *head)
+    {
+        if (head == NULL)
+        {
+            return;
+        }
+        displayReverseHelper(head->next);
+        cout << head->data << " ";
+    }
 };
+
 int main()
 {
     LinkedList l;
@@ -233,6 +250,6 @@ int main()
     l.addLast(8);
     l.addLast(9);
     l.addLast(10);
-    l.kReverse(3);
+    l.displayReverse();
     l.print();
 }
