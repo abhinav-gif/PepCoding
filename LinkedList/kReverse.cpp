@@ -156,7 +156,7 @@ public:
     {
         if (size == 0)
         {
-            cout << "List is empty" << endl;
+            //cout << "List is empty" << endl;
             return;
         }
         if (size == 1)
@@ -230,6 +230,30 @@ public:
         tail = head;
         head = reverseHelper(head);
     }
+    void reverseData()
+    {
+        left = head;
+        reverseDataHelper(head, 0);
+    }
+
+    void isPalindrome()
+    {
+        left = head;
+        if (isPalindromeHelper(head))
+        {
+            cout << "True" << endl;
+        }
+        else
+        {
+            cout << "False" << endl;
+        }
+    }
+
+    void fold()
+    {
+        left = head;
+        foldHelper(head, 0);
+    }
 
 private:
     void displayReverseHelper(Node *head)
@@ -252,6 +276,58 @@ private:
         head->next = NULL;
         return sh;
     }
+    Node *left;
+    Node *reverseDataHelper(Node *head, int count)
+    {
+        if (head == NULL)
+        {
+            return head;
+        }
+        reverseDataHelper(head->next, count + 1);
+        if (count <= size / 2)
+        {
+            swap(head->data, left->data);
+        }
+        left = left->next;
+    }
+    bool isPalindromeHelper(Node *head)
+    {
+        if (head == NULL)
+        {
+            return true;
+        }
+        bool so = isPalindromeHelper(head->next);
+        if (head->data != left->data)
+        {
+            left = left->next;
+            return false;
+        }
+        else
+        {
+            left = left->next;
+            return so;
+        }
+    }
+    void foldHelper(Node *head, int count)
+    {
+        if (head == NULL)
+        {
+            return;
+        }
+        foldHelper(head->next, count + 1);
+        if (count > size / 2)
+        {
+            Node *temp = left->next;
+            left->next = head;
+            head->next = temp;
+            left = temp;
+        }
+        else if (count == size / 2)
+        {
+            head->next = NULL;
+            tail = head;
+        }
+    }
 };
 
 int main()
@@ -260,13 +336,10 @@ int main()
     l.addLast(1);
     l.addLast(2);
     l.addLast(3);
-    // l.addLast(4);
-    // l.addLast(5);
-    // l.addLast(6);
-    // l.addLast(7);
-    // l.addLast(8);
-    // l.addLast(9);
-    // l.addLast(10);
-    l.reverse();
+    l.addLast(4);
+    l.addLast(5);
+    l.addLast(6);
+    l.addLast(7);
+    l.fold();
     l.print();
 }
