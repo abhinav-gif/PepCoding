@@ -13,35 +13,56 @@ bool checkParanthesis(string s)
         }
         else if (s[i] == ']')
         {
-            if (s1.top() != '[')
+            if (!s1.empty())
             {
-                return false;
+                if (s1.top() != '[')
+                {
+                    return false;
+                }
+                else
+                {
+                    s1.pop();
+                }
             }
             else
             {
-                s1.pop();
+                return false;
             }
         }
         else if (s[i] == '}')
         {
-            if (s1.top() != '{')
+            if (!s1.empty())
             {
-                return false;
+                if (s1.top() != '{')
+                {
+                    return false;
+                }
+                else
+                {
+                    s1.pop();
+                }
             }
             else
             {
-                s1.pop();
+                return false;
             }
         }
         else if (s[i] == ')')
         {
-            if (s1.top() != '(')
+            if (!s1.empty())
             {
-                return false;
+                if (s1.top() != '(')
+                {
+                    return false;
+                }
+                else
+                {
+                    s1.pop();
+                }
             }
             else
             {
-                s1.pop();
+                return false;
             }
         }
     }
